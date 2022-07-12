@@ -1,5 +1,6 @@
 package com.bhaveshsp.quantumassignment.signInsignUp
 
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,12 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bhaveshsp.quantumassignment.HomeActivity
 import com.bhaveshsp.quantumassignment.R
+import com.bhaveshsp.quantumassignment.models.User
+import com.bhaveshsp.quantumassignment.network.dao.FirebaseDao
 import com.bhaveshsp.quantumassignment.utils.EmailValidator
+import com.bhaveshsp.quantumassignment.utils.PHONE_NUMBER_KEY
+import com.bhaveshsp.quantumassignment.utils.SHARED_PREF
+import com.bhaveshsp.quantumassignment.utils.USER_NAME_KEY
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -44,6 +50,7 @@ class SignInFragment : Fragment() {
         val signInButton : Button = view.findViewById(R.id.signInButton)
         val googleSignInImage : ImageView = view.findViewById(R.id.googleSignInImage)
         val facebookSignInImage : ImageView = view.findViewById(R.id.facebookSignInImage)
+
 
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -120,9 +127,48 @@ class SignInFragment : Fragment() {
             Toast.makeText(activity, "Please Enter Password", Toast.LENGTH_SHORT).show()
             return
         }
-
+        val phoneNumber = requireActivity().getSharedPreferences(SHARED_PREF,MODE_PRIVATE).getString(
+            PHONE_NUMBER_KEY,"")
         val email = emailText.text.toString()
         val password = passwordText.text.toString()
+
+        FirebaseDao.userDatabaseReference(phoneNumber!!).addOnCompleteListener {
+            if (it.isSuccessful){
+                val result = it.result
+                try{
+                    val user = result.getValue(User::class.java) as User
+                    val editor = requireContext().getSharedPreferences(
+                        SHARED_PREF,
+                        MODE_PRIVATE).edit()
+                    editor.putString(USER_NAME_KEY,user.username)
+                    editor.putString(PHONE_NUMBER_KEY,user.phoneNumber)
+                    editor.apply()
+                    Log.d(TAG, "onViewCreated: Sucucess $user")
+                    if(email == user.email && password == user.password){
+                        goToHomeActivity()
+                    }else{
+                        Toast.makeText(
+                            requireContext(),
+                            "Invalid Username or Password",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }catch (e : Exception){
+                    Toast.makeText(
+                        requireContext(),
+                        "User Data not found please Create an Acoount ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+
+
+            }else{
+                Log.d(TAG, "onViewCreated: Error Snap")
+            }
+        }
+
+
         if (email == "test123@gmail.com" || password == "test123"){
             startActivity(Intent(activity,HomeActivity::class.java))
             activity?.finish()
@@ -132,6 +178,10 @@ class SignInFragment : Fragment() {
         }
     }
 
+    private fun goToHomeActivity(){
+        requireContext().startActivity(Intent(requireContext(),HomeActivity::class.java))
+        requireActivity().finish()
+    }
 
     private fun changeTab(){
         val tabs : TabLayout = requireActivity().findViewById(R.id.tabLayout)

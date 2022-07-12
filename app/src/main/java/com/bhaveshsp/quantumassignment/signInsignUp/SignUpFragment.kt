@@ -1,5 +1,6 @@
 package com.bhaveshsp.quantumassignment.signInsignUp
 
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.bhaveshsp.quantumassignment.R
+import com.bhaveshsp.quantumassignment.models.User
+import com.bhaveshsp.quantumassignment.network.dao.FirebaseDao
 import com.bhaveshsp.quantumassignment.utils.EmailValidator
+import com.bhaveshsp.quantumassignment.utils.PHONE_NUMBER_KEY
+import com.bhaveshsp.quantumassignment.utils.SHARED_PREF
 import com.google.android.material.tabs.TabLayout
 
 class SignUpFragment : Fragment() {
@@ -72,6 +77,33 @@ class SignUpFragment : Fragment() {
         val password = passwordText.text.toString()
         Toast.makeText(activity, "Account Created Successfully ", Toast.LENGTH_SHORT).show()
         changeTab()
+        val phoneNumber = requireActivity().getSharedPreferences(SHARED_PREF,MODE_PRIVATE).getString(
+            PHONE_NUMBER_KEY,"")
+
+        val user = User(
+            username = name,
+            password = password,
+            phoneNumber = phoneNo,
+            email = email
+        )
+        if (phoneNumber != null) {
+            FirebaseDao.setUserData(user=user,phoneNumber=phoneNumber).addOnCompleteListener{
+                if (it.isComplete){
+                    changeTab()
+                    Toast.makeText(
+                        requireContext(),
+                        "User Created Please Login !",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }else{
+                    Toast.makeText(
+                        requireContext(),
+                        "Error While Setting User Data",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
 
     }
 

@@ -44,8 +44,25 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-database'
+
     // Google Play
     implementation 'com.google.android.gms:play-services-auth:20.0.1'
+
+    // Retrofit2
+    def retrofit_version = "2.7.2"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-simplexml:$retrofit_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:4.12.0"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1"
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
+
 
 }
