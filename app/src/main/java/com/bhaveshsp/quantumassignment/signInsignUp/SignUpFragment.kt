@@ -59,7 +59,7 @@ class SignUpFragment : Fragment() {
             Toast.makeText(activity, "Please Valid Name", Toast.LENGTH_SHORT).show()
             return
         }
-        if (EmailValidator.isValidEmail(emailText.text)){
+        if (!EmailValidator.isValidEmail(emailText.text)){
             Toast.makeText(activity, "Please Valid Email", Toast.LENGTH_SHORT).show()
             return
         }

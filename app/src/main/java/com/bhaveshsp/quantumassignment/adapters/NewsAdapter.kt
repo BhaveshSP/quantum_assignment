@@ -11,7 +11,7 @@ import com.bhaveshsp.quantumassignment.R
 import com.bhaveshsp.quantumassignment.models.News
 import com.bumptech.glide.Glide
 
-class NewsAdapter(var context :Context ,var newsList : ArrayList<News>) :
+class NewsAdapter(var context :Context ,var newsList : List<News>) :
     RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var publishedAtText : TextView = itemView.findViewById(R.id.newsPublishedAtText)

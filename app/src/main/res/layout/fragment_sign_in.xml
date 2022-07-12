@@ -101,7 +101,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:gravity="center"
                         >
 
@@ -120,13 +120,12 @@
                             android:padding="12dp"
                             android:textColor="@color/darkGrey"
                             />
-                        <ImageView
-                            android:id="@+id/facebookSignInImage"
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
-                            app:srcCompat="@drawable/facebook"
-                            android:padding="12dp"
-                            />
+<!--                        <com.facebook.login.widget.LoginButton-->
+<!--                            android:id="@+id/facebookSignInImage"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_margin="8dp"-->
+<!--                            />-->
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"

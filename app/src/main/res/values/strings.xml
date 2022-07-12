@@ -19,9 +19,14 @@
     <string name="contact_no_hint">9875252509</string>
     <string name="i_agree">I agree with</string>
     <string name="terms_conditions">terms &amp; condition</string>
-    <string name="alreadY_account">Already have an account?</string>
+    <string name="already_account">Already have an account?</string>
     <string name="social">Social</string>
     <string name="home">Home</string>
     <string name="x">X</string>
     <string name="search_hint">Search in Feed</string>
+
+    <string name="facebook_app_id">2850494865256870</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">58413b2ba074e9bcc9051f2e5796061e</string>
+
 </resources>

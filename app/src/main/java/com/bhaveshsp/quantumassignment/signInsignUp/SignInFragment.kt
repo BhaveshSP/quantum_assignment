@@ -22,9 +22,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.tabs.TabLayout
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -49,9 +47,6 @@ class SignInFragment : Fragment() {
         val registerNowText : TextView = view.findViewById(R.id.registerNowText)
         val signInButton : Button = view.findViewById(R.id.signInButton)
         val googleSignInImage : ImageView = view.findViewById(R.id.googleSignInImage)
-        val facebookSignInImage : ImageView = view.findViewById(R.id.facebookSignInImage)
-
-
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
@@ -59,7 +54,6 @@ class SignInFragment : Fragment() {
         googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         googleSignInImage.setOnClickListener { googleSignIn() }
-        facebookSignInImage.setOnClickListener { facebookSignIn() }
 
         emailText = view.findViewById(R.id.signInEmailText)
         passwordText = view.findViewById(R.id.signInPasswordText)
@@ -111,10 +105,6 @@ class SignInFragment : Fragment() {
         user?.let {
             startActivity(Intent(activity, HomeActivity::class.java))
         }
-    }
-
-    private fun facebookSignIn(){
-        Toast.makeText(activity, "Not Implementated", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -169,13 +159,6 @@ class SignInFragment : Fragment() {
         }
 
 
-        if (email == "test123@gmail.com" || password == "test123"){
-            startActivity(Intent(activity,HomeActivity::class.java))
-            activity?.finish()
-        }else{
-            Toast.makeText(activity, "Please Enter Valid Email Id or Password", Toast.LENGTH_SHORT)
-                .show()
-        }
     }
 
     private fun goToHomeActivity(){
