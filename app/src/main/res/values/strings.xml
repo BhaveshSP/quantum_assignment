@@ -1,3 +1,34 @@
 <resources>
     <string name="app_name">QuantumAssignment</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_in_title">Sign in to your \nAccount</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="email">Email ID </string>
+    <string name="email_hint">JohnDoe123@gmail.com</string>
+    <string name="password">Password</string>
+    <string name="or">Or</string>
+    <string name="password_hint">*************</string>
+    <string name="login_with">Login with</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="register_now">Register Now</string>
+    <string name="sign_up_title">Create an \nAccount </string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="name_hint">John Doe</string>
+    <string name="contact_no">Contact No.</string>
+    <string name="contact_no_hint">9875252509</string>
+    <string name="i_agree">I agree with</string>
+    <string name="terms_conditions">terms &amp; condition</string>
+    <string name="alreadY_account">Already have an account?</string>
+    <string name="social">Social</string>
+    <string name="home">Home</string>
+    <string name="x">X</string>
+    <string name="search_hint">Search</string>
+    <string name="best_seller">Best Sellers</string>
+    <string name="back_to_the_city">Back to the City</string>
+    <string name="clothing_shoes">Clothing &amp; Shoes</string>
+    <string name="flash_deals">Flash Deals</string>
+    <string name="flash_deal_tag_line">Deals you can\'t resist!</string>
+    <string name="special_products">40A1Express Special Products</string>
+    <string name="more_to_love">More to love</string>
 </resources>
